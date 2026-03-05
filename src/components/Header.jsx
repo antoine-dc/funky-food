@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 export default function Header() {
   return (
-    <header className="relative overflow-hidden">
+    <header className="relative overflow-hidden bg-gradient-to-br from-purple-400 via-pink-400 to-orange-300">
       <div
         className="h-[400px] bg-cover bg-center relative"
         style={{
