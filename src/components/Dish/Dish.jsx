@@ -17,7 +17,7 @@ export default function Dish({ index, dish }) {
         }}
       >
         {/* Image */}
-        <div className="relative h-64 overflow-hidden">
+        <div className="relative h-64 overflow-hidden rounded-t-3xl">
           <img
             src={dish.image}
             alt={dish.name}
