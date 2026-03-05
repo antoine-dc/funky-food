@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import CTA from "../components/CTA";
 import data from "../data/menu.json";
 import Dish from "../components/Dish/Dish";
+import SearchBar from "../components/SearchBar";
 
 export default function Home() {
   return (
@@ -12,6 +13,8 @@ export default function Home() {
       <p className="text-center text-gray-600 mb-12 text-lg">
         Des plats sélectionnés qui vont vous époustoufler ! 🌈✨
       </p>
+
+      {/* TODO : Appel de la SearchBar */}
 
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {data.map((dishData, index) => (

@@ -2,7 +2,6 @@ import { Link } from "react-router";
 import { Star, Clock, Users, ShoppingCart } from "lucide-react";
 import DishRating from "./DishRating";
 import DishDifficulty from "./DishDifficulty";
-import "./Dish.css";
 import DishAddToCart from "./DishAddToCart";
 import DishTag from "./DishTag";
 import DishContent from "./DishContent";
