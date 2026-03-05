@@ -9,6 +9,15 @@ export default function Home() {
   const [menu, setMenu] = useState(data);
   const [searchTerm, setSearchTerm] = useState("Recherche :");
 
+  const handleSearch = (searchValue) => {
+    setSearchTerm("Recherche : " + searchValue);
+    setMenu(
+      data.filter((dish) =>
+        dish.name.toLowerCase().includes(searchValue.toLowerCase()),
+      ),
+    );
+  };
+
   return (
     <>
       <h2 className="text-5xl font-black text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500">
@@ -23,26 +32,12 @@ export default function Home() {
           type="text"
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              setSearchTerm("Recherche : " + e.currentTarget.value);
-              setMenu(
-                data.filter((dish) =>
-                  dish.name
-                    .toLowerCase()
-                    .includes(e.currentTarget.value.toLowerCase()),
-                ),
-              );
+              handleSearch(e.currentTarget.value);
             }
           }}
           onChange={(e) => {
             if (e.currentTarget.value.length >= 3) {
-              setSearchTerm("Recherche : " + e.currentTarget.value);
-              setMenu(
-                data.filter((dish) =>
-                  dish.name
-                    .toLowerCase()
-                    .includes(e.currentTarget.value.toLowerCase()),
-                ),
-              );
+              handleSearch(e.currentTarget.value);
             } else if (e.currentTarget.value.length === 0) {
               setSearchTerm("Recherche :");
               setMenu(data);
