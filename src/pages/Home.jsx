@@ -14,7 +14,7 @@ export default function Home() {
         Des plats sélectionnés qui vont vous époustoufler ! 🌈✨
       </p>
 
-      {/* TODO : Appel de la SearchBar */}
+      <SearchBar />
 
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {data.map((dishData, index) => (
