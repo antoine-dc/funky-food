@@ -1,7 +1,17 @@
 import { useState } from "react";
 
-export default function SearchBar() {
+export default function SearchBar({ menu, setMenu }) {
   const [searchTerm, setSearchTerm] = useState("Recherche :");
+  const [data] = useState(menu);
+
+  const handleSearch = (searchValue) => {
+    setSearchTerm("Recherche : " + searchValue);
+    setMenu(
+      data.filter((dish) =>
+        dish.name.toLowerCase().includes(searchValue.toLowerCase()),
+      ),
+    );
+  };
   return (
     <>
       <div className="flex justify-between flex-wrap mb-4">
@@ -9,14 +19,17 @@ export default function SearchBar() {
           type="text"
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              setSearchTerm("Recherche : " + e.currentTarget.value);
+              handleSearch(e.currentTarget.value);
             }
           }}
           onChange={(e) => {
             if (e.currentTarget.value.length >= 3) {
-              setSearchTerm("Recherche : " + e.currentTarget.value);
+              handleSearch(e.currentTarget.value);
             } else if (e.currentTarget.value.length === 0) {
               setSearchTerm("Recherche :");
+
+              console.log(data);
+              setMenu(data);
             }
           }}
           placeholder="Cherche ton prochain repas"
