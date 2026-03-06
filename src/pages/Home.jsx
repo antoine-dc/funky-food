@@ -4,7 +4,7 @@ import CTA from "../components/CTA";
 import Dish from "../components/Dish/Dish";
 import SearchBar from "../components/SearchBar";
 import { useContext } from "react";
-import { MainContext } from "../Layout";
+import { MainContext } from "../contexts/MainContext";
 
 export default function Home() {
   const { menu } = useContext(MainContext);

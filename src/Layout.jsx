@@ -3,8 +3,8 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { Toaster } from "sonner";
 import { CartButton } from "./components/Cart/CartButton";
-import { createContext, useState } from "react";
-export const MainContext = createContext();
+import { useState } from "react";
+import { MainContext } from "./contexts/MainContext";
 
 import data from "./data/menu.json";
 

@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { MainContext } from "../Layout";
+import { MainContext } from "../contexts/MainContext";
 import data from "../data/menu.json";
 
 export default function SearchBar() {
