@@ -3,21 +3,10 @@ import CTA from "../components/CTA";
 import data from "../data/menu.json";
 import Dish from "../components/Dish/Dish";
 import SearchBar from "../components/SearchBar";
-import { useState } from "react";
 
 export default function Home() {
-  const [menu, setMenu] = useState(data);
-  const [searchTerm, setSearchTerm] = useState("Recherche :");
-
-  const handleSearch = (searchValue) => {
-    setSearchTerm("Recherche : " + searchValue);
-    setMenu(
-      data.filter((dish) =>
-        dish.name.toLowerCase().includes(searchValue.toLowerCase()),
-      ),
-    );
-  };
-
+  // TODO : Ajouter un state pour les données
+  // TODO : Ajouter un state pour la recherche
   return (
     <>
       <h2 className="text-5xl font-black text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500">
@@ -26,32 +15,12 @@ export default function Home() {
       <p className="text-center text-gray-600 mb-12 text-lg">
         Des plats sélectionnés qui vont vous époustoufler ! 🌈✨
       </p>
-      {/* SEARCHBAR */}
-      <div className="flex justify-between flex-wrap mb-4">
-        <input
-          type="text"
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              handleSearch(e.currentTarget.value);
-            }
-          }}
-          onChange={(e) => {
-            if (e.currentTarget.value.length >= 3) {
-              handleSearch(e.currentTarget.value);
-            } else if (e.currentTarget.value.length === 0) {
-              setSearchTerm("Recherche :");
-              setMenu(data);
-            }
-          }}
-          placeholder="Cherche ton prochain repas"
-          className="bg-gray-100 rounded-full w-96 p-2 px-6"
-        />
-      </div>
-      <p className="text-gray-600 mb-12 px-6">{searchTerm}</p>
-      {/* SEARCHBAR - END */}
+
+      <SearchBar />
+      {/* On va remettre le contenu de SearchBar ici pour ce chapitre */}
 
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {menu.map((dishData, index) => (
+        {data.map((dishData, index) => (
           <Dish key={index} index={index} dish={dishData} />
         ))}
       </section>
