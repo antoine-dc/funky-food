@@ -7,16 +7,6 @@ import { useState } from "react";
 
 export default function Home() {
   const [menu, setMenu] = useState(data);
-  const [searchTerm, setSearchTerm] = useState("Recherche :");
-
-  const handleSearch = (searchValue) => {
-    setSearchTerm("Recherche : " + searchValue);
-    setMenu(
-      data.filter((dish) =>
-        dish.name.toLowerCase().includes(searchValue.toLowerCase()),
-      ),
-    );
-  };
 
   return (
     <>
@@ -26,9 +16,8 @@ export default function Home() {
       <p className="text-center text-gray-600 mb-12 text-lg">
         Des plats sélectionnés qui vont vous époustoufler ! 🌈✨
       </p>
-      {/* SEARCHBAR */}
+
       <SearchBar menu={menu} setMenu={setMenu} />
-      {/* SEARCHBAR - END */}
 
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {menu.map((dishData, index) => (
