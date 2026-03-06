@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { MainContext } from "../Layout";
 
-export default function SearchBar({ menu, setMenu }) {
+export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("Recherche :");
-  const [data] = useState(menu);
+
+  const { data, setMenu } = useContext(MainContext);
 
   const handleSearch = (searchValue) => {
     setSearchTerm("Recherche : " + searchValue);
@@ -27,8 +29,6 @@ export default function SearchBar({ menu, setMenu }) {
               handleSearch(e.currentTarget.value);
             } else if (e.currentTarget.value.length === 0) {
               setSearchTerm("Recherche :");
-
-              console.log(data);
               setMenu(data);
             }
           }}

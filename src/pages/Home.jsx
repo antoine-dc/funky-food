@@ -1,13 +1,13 @@
 import { Link } from "react-router";
 import CTA from "../components/CTA";
-import data from "../data/menu.json";
+
 import Dish from "../components/Dish/Dish";
 import SearchBar from "../components/SearchBar";
-import { useState } from "react";
+import { useContext } from "react";
+import { MainContext } from "../Layout";
 
 export default function Home() {
-  const [menu, setMenu] = useState(data);
-
+  const { menu } = useContext(MainContext);
   return (
     <>
       <h2 className="text-5xl font-black text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500">
@@ -17,7 +17,7 @@ export default function Home() {
         Des plats sélectionnés qui vont vous époustoufler ! 🌈✨
       </p>
 
-      <SearchBar menu={menu} setMenu={setMenu} />
+      <SearchBar />
 
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {menu.map((dishData, index) => (
