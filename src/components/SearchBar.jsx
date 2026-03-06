@@ -1,15 +1,16 @@
 import { useContext, useState } from "react";
 import { MainContext } from "../Layout";
+import data from "../data/menu.json";
 
 export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("Recherche :");
 
-  const { data, setMenu } = useContext(MainContext);
+  const { menu, setMenu } = useContext(MainContext);
 
   const handleSearch = (searchValue) => {
     setSearchTerm("Recherche : " + searchValue);
     setMenu(
-      data.filter((dish) =>
+      menu.filter((dish) =>
         dish.name.toLowerCase().includes(searchValue.toLowerCase()),
       ),
     );
