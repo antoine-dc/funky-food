@@ -1,11 +1,10 @@
 import { useContext, useState } from "react";
 import { MainContext } from "../contexts/MainContext";
-import data from "../data/menu.json";
 
 export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("Recherche :");
 
-  const { menu, setMenu } = useContext(MainContext);
+  const { menu, setMenu, resetMenu } = useContext(MainContext);
 
   const handleSearch = (searchValue) => {
     setSearchTerm("Recherche : " + searchValue);
@@ -30,7 +29,7 @@ export default function SearchBar() {
               handleSearch(e.currentTarget.value);
             } else if (e.currentTarget.value.length === 0) {
               setSearchTerm("Recherche :");
-              setMenu(data);
+              resetMenu();
             }
           }}
           placeholder="Cherche ton prochain repas"

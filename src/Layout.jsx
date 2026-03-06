@@ -3,13 +3,9 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { Toaster } from "sonner";
 import { CartButton } from "./components/Cart/CartButton";
-import { useState } from "react";
 import { MainProvider } from "./contexts/MainContext";
 
-// import data from "./data/menu.json";
-
 function Layout() {
-  // const [menu, setMenu] = useState(data);
   return (
     <MainProvider>
       <div className="min-h-screen">
