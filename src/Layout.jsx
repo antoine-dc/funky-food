@@ -4,14 +4,14 @@ import Header from "./components/Header";
 import { Toaster } from "sonner";
 import { CartButton } from "./components/Cart/CartButton";
 import { useState } from "react";
-import { MainContext } from "./contexts/MainContext";
+import { MainProvider } from "./contexts/MainContext";
 
-import data from "./data/menu.json";
+// import data from "./data/menu.json";
 
 function Layout() {
-  const [menu, setMenu] = useState(data);
+  // const [menu, setMenu] = useState(data);
   return (
-    <MainContext.Provider value={{ menu, setMenu }}>
+    <MainProvider>
       <div className="min-h-screen">
         <Header />
         <main className="bg-white px-4 py-12">
@@ -23,7 +23,7 @@ function Layout() {
         <Toaster position="top-center" />
         <CartButton />
       </div>
-    </MainContext.Provider>
+    </MainProvider>
   );
 }
 
