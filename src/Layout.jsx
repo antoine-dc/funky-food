@@ -2,6 +2,7 @@ import { Outlet } from "react-router";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { Toaster } from "sonner";
+import { CartButton } from "./components/Cart/CartButton";
 
 function Layout() {
   return (
@@ -14,6 +15,7 @@ function Layout() {
       </main>
       <Footer />
       <Toaster position="top-center" />
+      <CartButton />
     </div>
   );
 }
