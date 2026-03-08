@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useTransition } from "react";
 import { MainContext } from "../contexts/MainContext";
 
 export default function SearchBar() {
@@ -6,9 +6,13 @@ export default function SearchBar() {
 
   const { resetMenu, searchRecipes } = useContext(MainContext);
 
+  const [isPending, startTransition] = useTransition();
+
   const handleSearch = (searchValue) => {
     setSearchTerm("Recherche : " + searchValue);
-    searchRecipes(searchValue.toLowerCase());
+    startTransition(() => {
+      searchRecipes(searchValue.toLowerCase());
+    });
   };
   return (
     <>
@@ -33,6 +37,9 @@ export default function SearchBar() {
         />
       </div>
       <p className="text-gray-600 mb-12 px-6">{searchTerm}</p>
+      <p className="text-gray-600 mb-12 px-6">
+        {isPending && <p>Chargement des résultats...</p>}
+      </p>
     </>
   );
 }
