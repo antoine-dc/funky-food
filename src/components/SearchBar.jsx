@@ -4,15 +4,11 @@ import { MainContext } from "../contexts/MainContext";
 export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("Recherche :");
 
-  const { menu, setMenu, resetMenu } = useContext(MainContext);
+  const { resetMenu, searchRecipes } = useContext(MainContext);
 
   const handleSearch = (searchValue) => {
     setSearchTerm("Recherche : " + searchValue);
-    setMenu(
-      menu.filter((dish) =>
-        dish.name.toLowerCase().includes(searchValue.toLowerCase()),
-      ),
-    );
+    searchRecipes(searchValue.toLowerCase());
   };
   return (
     <>

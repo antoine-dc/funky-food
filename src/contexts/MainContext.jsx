@@ -1,21 +1,27 @@
 import { createContext, useEffect, useState } from "react";
-import { getRecipes } from "../services/recipesServices";
-// import { useContext } from "react";
-// import data from "../data/menu.json";
+import { getRecipes, getRecipesSearch } from "../services/recipesServices";
 
 export const MainContext = createContext();
 
 export function MainProvider({ children }) {
   const [menu, setMenu] = useState([]);
 
-  const resetMenu = () => setMenu([]);
+  const resetMenu = async () => {
+    const data = await getRecipes();
+    setMenu(data.recipes);
+  };
+
+  const searchRecipes = async (terms) => {
+    const data = await getRecipesSearch(terms);
+    setMenu(data.recipes);
+  };
 
   useEffect(() => {
     getRecipes().then((data) => setMenu(data.recipes));
   }, []);
 
   return (
-    <MainContext.Provider value={{ menu, setMenu, resetMenu }}>
+    <MainContext.Provider value={{ menu, setMenu, resetMenu, searchRecipes }}>
       {children}
     </MainContext.Provider>
   );
