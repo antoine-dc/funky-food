@@ -1,13 +1,19 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 // import { useContext } from "react";
-import data from "../data/menu.json";
+// import data from "../data/menu.json";
 
 export const MainContext = createContext();
 
 export function MainProvider({ children }) {
-  const [menu, setMenu] = useState(data);
+  const [menu, setMenu] = useState([]);
 
-  const resetMenu = () => setMenu(data);
+  const resetMenu = () => setMenu([]);
+
+  useEffect(() => {
+    fetch("https://dummyjson.com/recipes")
+      .then((res) => res.json())
+      .then((data) => setMenu(data.recipes));
+  }, []);
 
   return (
     <MainContext.Provider value={{ menu, setMenu, resetMenu }}>
