@@ -1,13 +1,12 @@
 import { Link } from "react-router";
 import CTA from "../components/CTA";
-
-import Dish from "../components/Dish/Dish";
 import SearchBar from "../components/SearchBar";
-import { useContext } from "react";
+import { lazy, Suspense, useContext } from "react";
 import { MainContext } from "../contexts/MainContext";
 
 export default function Home() {
   const { menu } = useContext(MainContext);
+  const Dish = lazy(() => import("../components/Dish/Dish"));
   return (
     <>
       <h2 className="text-5xl font-black text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500">
@@ -19,11 +18,19 @@ export default function Home() {
 
       <SearchBar />
 
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {menu.map((dishData, index) => (
-          <Dish key={index} index={index} dish={dishData} />
-        ))}
-      </section>
+      <Suspense
+        fallback={
+          <h2 className="text-5xl font-black mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500">
+            Chargement du menu...
+          </h2>
+        }
+      >
+        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {menu.map((dishData, index) => (
+            <Dish key={index} index={index} dish={dishData} />
+          ))}
+        </section>
+      </Suspense>
 
       <CTA
         message="Curieux de notre philosophie ? 🎉"
